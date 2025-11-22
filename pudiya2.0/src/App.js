@@ -134,9 +134,9 @@ const Dashboard = ({ loading }) => {
     () => ({
       updates: [
         { icon: '⚡', label: 'Realtime peak reached', meta: 'Just now' },
-        { icon: '🛒', label: '52 new orders', meta: '15 minutes ago' },
-        { icon: '👤', label: '12 VIP signups', meta: '1 hour ago' },
-        { icon: '💬', label: '7 support replies', meta: '2 hours ago' },
+        { icon: '🛒', label: '52 new PUDII', meta: '15 minutes ago' },
+        { icon: '👤', label: '12 VIP PUDI', meta: '1 hour ago' },
+        { icon: '💬', label: '7 support replies for Pudi', meta: '2 hours ago' },
       ],
       roadmap: [
         { icon: '🎯', label: 'Goals recalibration', meta: 'ETA: 3 days' },
