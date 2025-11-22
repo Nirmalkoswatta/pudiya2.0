@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { isFirebaseConfigured } from './firebase';
 import {
   BrowserRouter as Router,
   Link,
@@ -68,18 +67,8 @@ const LoadingScreen = () => (
   </div>
 );
 
-const MissingFirebaseAlert = () => (
-  <div className="card firebase-warning">
-    <h2>Connect Firebase</h2>
-    <p>
-      We need your Firebase project settings before authentication and pudi uploads can work. Add the
-      <code>REACT_APP_FIREBASE_*</code> environment variables, restart the dev server, and refresh this page.
-    </p>
-    <p className="firebase-warning-footer">
-      Project ID, number, and API keys from the Firebase console &gt; Project settings.
-    </p>
-  </div>
-);
+// Removed Firebase config warning card
+const MissingFirebaseAlert = () => null;
 
 const getUserInitials = (user) => {
   const source = user?.displayName ?? user?.email ?? '';
@@ -546,7 +535,15 @@ const Dashboard = ({ user }) => {
   const openEditModal = (entry) => {
     setEditingEntry({
       ...entry,
-      date: entry.date ? (entry.date.includes('-') ? entry.date : new Date(entry.date).toISOString().slice(0, 10)) : '',
+      date: entry.date
+        ? typeof entry.date === 'string'
+          ? entry.date.includes('-')
+            ? entry.date
+            : new Date(entry.date).toISOString().slice(0, 10)
+          : entry.date?.toDate
+          ? entry.date.toDate().toISOString().slice(0, 10)
+          : new Date(entry.date).toISOString().slice(0, 10)
+        : '',
     });
     setIsModalOpen(true);
     setError('');
